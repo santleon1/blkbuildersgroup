@@ -1,37 +1,62 @@
-// src/app/layout.js
-import "./globals.css";
+"use client";
 import Link from "next/link";
 import Image from "next/image";
-
-export const metadata = {
-  title: "BLK Builders Group — Wind Resistance",
-  description: "Hurricane-resistant homes for Florida",
-};
+import "./globals.css";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
-        <header className="site-header">
-          <Link href="/" className="logo" aria-label="BLK Builders Group home">
+      <body
+        style={{
+          backgroundColor: "#f5f5f5",
+          color: "#000",
+          fontFamily: "sans-serif",
+          margin: 0,
+        }}
+      >
+        {/* --- HEADER --- */}
+        <header
+          style={{
+            backgroundColor: "#0c1b45",
+            padding: "16px 40px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <Link href="/" style={{ display: "flex", alignItems: "center" }}>
             <Image
-              src="/blk-bluelogo.png"         // ← use the PNG
-              alt="BLK Builders Group — Wind Resistance"
-              width={220}                      // ← increase size as needed
-              height={72}
+              src="/blk-bluelogo.png"
+              alt="BLK Builders Group"
+              width={240}      // ⬅️ logo enlarged
+              height={60}
               priority
             />
           </Link>
 
-          <nav className="main-nav" aria-label="Primary">
-            <Link href="/projects">Projects</Link>
-            <Link href="/contact">Contact</Link>
+          <nav style={{ display: "flex", gap: "28px" }}>
+            <Link
+              href="/projects"
+              style={{ color: "#fff", fontWeight: "bold", textDecoration: "none" }}
+            >
+              Projects
+            </Link>
+            <Link
+              href="/contact"
+              style={{ color: "#fff", fontWeight: "bold", textDecoration: "none" }}
+            >
+              Contact
+            </Link>
           </nav>
         </header>
 
-        <main>{children}</main>
+        {/* --- MAIN CONTENT --- */}
+        <main style={{ maxWidth: "1200px", margin: "0 auto", padding: "40px" }}>
+          {children}
+        </main>
       </body>
     </html>
   );
 }
+
 
