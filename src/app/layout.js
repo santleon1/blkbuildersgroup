@@ -26,14 +26,12 @@ export default function RootLayout({ children }) {
         >
           <Link href="/" style={{ display: "flex", alignItems: "center" }}>
             <Image
-  src="/blk-bluelogo.png"
-  alt="BLK Builders Group"
-  height={65}          // set desired height
-  width={0}            // let Next.js auto-calc width
-  style={{ height: "65px", width: "auto" }} // keep aspect ratio
-  priority
-/>
-
+              src="/blk-bluelogo.png"
+              alt="BLK Builders Group"
+              width={260}                 // intrinsic width (any reasonable value)
+              height={65}                 // controls the displayed height
+              style={{ height: "65px", width: "auto" }} // keep aspect ratio
+              priority
             />
           </Link>
 
@@ -61,5 +59,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-
-
