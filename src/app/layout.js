@@ -28,9 +28,12 @@ export default function RootLayout({ children }) {
             <Image
               src="/blk-bluelogo.png"
               alt="BLK Builders Group"
-              width={260}                 // intrinsic width (any reasonable value)
-              height={65}                 // controls the displayed height
-              style={{ height: "65px", width: "auto" }} // keep aspect ratio
+              width={260}          // width gives Next.js a base size
+              height={0}           // height 0 lets width & style control aspect
+              style={{
+                width: "260px",    // make the logo nice and big
+                height: "auto",    // keep proper proportions
+              }}
               priority
             />
           </Link>
