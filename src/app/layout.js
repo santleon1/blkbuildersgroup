@@ -26,11 +26,14 @@ export default function RootLayout({ children }) {
         >
           <Link href="/" style={{ display: "flex", alignItems: "center" }}>
             <Image
-              src="/blk-bluelogo.png"
-              alt="BLK Builders Group"
-              width={240}      // ⬅️ logo enlarged
-              height={60}
-              priority
+  src="/blk-bluelogo.png"
+  alt="BLK Builders Group"
+  height={65}          // set desired height
+  width={0}            // let Next.js auto-calc width
+  style={{ height: "65px", width: "auto" }} // keep aspect ratio
+  priority
+/>
+
             />
           </Link>
 
