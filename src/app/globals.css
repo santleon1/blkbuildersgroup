@@ -169,3 +169,30 @@ h1, h2, h3, h4, h5, h6 {
 }
 /* Make video behave like the images in the carousel */
 video.media { object-fit: cover; }
+/* Header styling */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: #0b1740; /* dark blue header */
+}
+
+/* Keep the logo container tight */
+.site-header .logo {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* White nav links inside header */
+.site-header .main-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 1.25rem; /* space between links */
+}
+
+.site-header .main-nav a:hover {
+  text-decoration: underline;
+}
+
