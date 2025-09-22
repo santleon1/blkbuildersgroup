@@ -39,7 +39,6 @@ export default function Home() {
         <h2>Made in America</h2>
 <p>
   Panels are manufactured in the United States of America — enabling faster delivery and avoiding import steps.
-</p>.
       </p>
     </main>
   );
