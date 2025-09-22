@@ -61,4 +61,10 @@ export default function RootLayout({ children }) {
       </body>
     </html>
   );
+export const metadata = {
+  title: "BLK Builders Group — Wind Resistance",
+  description: "Hurricane-resistant, thermally and acoustically insulated construction...",
+  icons: {
+    icon: "/sello BLK.PNG",   // or "/favicon.png" if you used PNG
+  },
 }
