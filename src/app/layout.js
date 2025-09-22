@@ -1,8 +1,18 @@
-"use client";
 import Link from "next/link";
 import Image from "next/image";
 import "./globals.css";
 
+export const metadata = {
+  title: "BLK Builders Group — Wind Resistance",
+  description:
+    "Hurricane-resistant, thermally and acoustically insulated construction. Modular, energy-saving housing.",
+  icons: {
+    icon: "/sello-blk.png",           // favicon shown in browser tab
+    // You can add more sizes if you like:
+    // shortcut: "/sello-blk.png",
+    // apple: "/apple-touch-icon.png",
+  },
+};
 
 export default function RootLayout({ children }) {
   return (
@@ -29,27 +39,18 @@ export default function RootLayout({ children }) {
             <Image
               src="/blk-bluelogo.png"
               alt="BLK Builders Group"
-              width={260}          // width gives Next.js a base size
-              height={0}           // height 0 lets width & style control aspect
-              style={{
-                width: "260px",    // make the logo nice and big
-                height: "auto",    // keep proper proportions
-              }}
+              width={260}
+              height={90}  // must be > 0; adjust to your logo aspect ratio
+              style={{ height: "auto", width: "260px" }}
               priority
             />
           </Link>
 
           <nav style={{ display: "flex", gap: "28px" }}>
-            <Link
-              href="/projects"
-              style={{ color: "#fff", fontWeight: "bold", textDecoration: "none" }}
-            >
+            <Link href="/projects" style={{ color: "#fff", fontWeight: "bold", textDecoration: "none" }}>
               Projects
             </Link>
-            <Link
-              href="/contact"
-              style={{ color: "#fff", fontWeight: "bold", textDecoration: "none" }}
-            >
+            <Link href="/contact" style={{ color: "#fff", fontWeight: "bold", textDecoration: "none" }}>
               Contact
             </Link>
           </nav>
@@ -58,10 +59,6 @@ export default function RootLayout({ children }) {
         {/* --- MAIN CONTENT --- */}
         <main style={{ maxWidth: "1200px", margin: "0 auto", padding: "40px" }}>
           {children}
-  icons: {
-    icon: "/sello BLK.PNG",   // or "/favicon.png" if you used PNG
-  },
-
         </main>
       </body>
     </html>
