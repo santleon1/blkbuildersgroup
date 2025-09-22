@@ -36,9 +36,10 @@ export default function Home() {
         & acoustically insulated systems that reduce energy and construction time via pre-assembled modular panels.
       </p>
 
-      <h2>Made in Florida</h2>
-      <p>
-        Panels are manufactured in Panama City, Florida — enabling faster delivery and avoiding import steps.
+        <h2>Made in America</h2>
+<p>
+  Panels are manufactured in the United States of America — enabling faster delivery and avoiding import steps.
+</p>.
       </p>
     </main>
   );
