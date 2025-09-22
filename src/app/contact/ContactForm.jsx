@@ -40,3 +40,32 @@ export default function ContactForm() {
     </form>
   );
 }
+
+async function handleSubmit(e) {
+  e.preventDefault();
+  setStatus("sending"); setError("");
+
+  try {
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, message: msg }),
+    });
+
+    const text = await res.text();
+    let data;
+    try { data = JSON.parse(text); }
+    catch { throw new Error(`Server returned ${res.status}: ${text.slice(0,200)}…`); }
+
+    if (!res.ok || !data?.ok) {
+      throw new Error(data?.error || `Failed with ${res.status}`);
+    }
+
+    setStatus("ok");
+    setName(""); setEmail(""); setMsg("");
+  } catch (err) {
+    setStatus("error");
+    setError(err.message);
+  }
+}
+
