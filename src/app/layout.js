@@ -7,7 +7,7 @@ export const metadata = {
   description:
     "Hurricane-resistant, thermally and acoustically insulated construction. Modular, energy-saving housing.",
   icons: {
-    icon: "/sello-blk.png",           // favicon shown in browser tab
+    icon: "/Sello BLK.PNG",           // favicon shown in browser tab
     // You can add more sizes if you like:
     // shortcut: "/sello-blk.png",
     // apple: "/apple-touch-icon.png",
