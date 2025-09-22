@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import "./globals.css";
 
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -57,14 +58,15 @@ export default function RootLayout({ children }) {
         {/* --- MAIN CONTENT --- */}
         <main style={{ maxWidth: "1200px", margin: "0 auto", padding: "40px" }}>
           {children}
-        </main>
-      </body>
-    </html>
-  );
 export const metadata = {
   title: "BLK Builders Group — Wind Resistance",
   description: "Hurricane-resistant, thermally and acoustically insulated construction...",
   icons: {
     icon: "/sello BLK.PNG",   // or "/favicon.png" if you used PNG
   },
+
+        </main>
+      </body>
+    </html>
+  );
 }
