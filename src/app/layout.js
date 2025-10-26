@@ -41,8 +41,8 @@ export default function RootLayout({ children }) {
             <Image
               src="/blk-bluelogo.png"
               alt="BLK Builders Group"
-              width={260}
-              height={90}  // must be > 0; adjust to your logo aspect ratio
+              width={180}
+              height={60}  // must be > 0; adjust to your logo aspect ratio
               style={{ height: "auto", width: "260px" }}
               priority
             />
