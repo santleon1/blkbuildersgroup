@@ -195,4 +195,5 @@ video.media { object-fit: cover; }
 .site-header .main-nav a:hover {
   text-decoration: underline;
 }
+main { line-height: 1.6; margin-top: 12px; }
 
