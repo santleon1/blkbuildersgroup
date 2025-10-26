@@ -1,10 +1,3 @@
-return (
-  <main style={{ padding: "16px" }}>
-    <h1 style={{ fontSize: 24, marginBottom: 12 }}>Contact Us</h1>
-
-    <form onSubmit={handleSubmit} style={{ width: "100%", maxWidth: 520, display: "grid", gap: 10 }}>
-      {/* inputs as you already have them */}
-
 "use client";
 import { useState } from "react";
 
@@ -12,11 +5,13 @@ export default function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [status, setStatus] = useState(null);
+  const [status, setStatus] = useState("idle"); // idle | sending | ok | error
+  const [error, setError] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setStatus("Sending...");
+    setStatus("sending");
+    setError("");
 
     try {
       const res = await fetch("/api/contact", {
@@ -24,55 +19,72 @@ export default function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, message }),
       });
-      const data = await res.json();
-      if (res.ok && data.ok) {
-        setStatus("Message sent ");
-        setName(""); setEmail(""); setMessage("");
-      } else {
-        setStatus(`Failed: ${data.error || res.statusText}`);
+
+      const text = await res.text();
+      let data;
+      try { data = JSON.parse(text); }
+      catch { throw new Error(`Server returned ${res.status}: ${text.slice(0,200)}…`); }
+
+      if (!res.ok || !data?.ok) {
+        throw new Error(data?.error || `Failed with ${res.status}`);
       }
+
+      setStatus("ok");
+      setName(""); setEmail(""); setMessage("");
     } catch (err) {
-      setStatus("Failed to send. Check console/server.");
+      setStatus("error");
+      setError(err.message || "Could not send");
       console.error(err);
     }
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ maxWidth: 520, display: "grid", gap: 12 }}>
-      <input placeholder="Your name" value={name} onChange={e=>setName(e.target.value)} required />
-      <input type="email" placeholder="you@example.com" value={email} onChange={e=>setEmail(e.target.value)} required />
-      <textarea rows={6} placeholder="Tell us about your project…" value={message} onChange={e=>setMessage(e.target.value)} required />
-      <button type="submit">Send</button>
-      {status && <p>{status}</p>}
-    </form>
+    <main style={{ padding: "16px" }}>
+      <h1 style={{ fontSize: 24, marginBottom: 12 }}>Contact Us</h1>
+
+      <form
+        onSubmit={handleSubmit}
+        style={{ width: "100%", maxWidth: 520, display: "grid", gap: 10 }}
+      >
+        <input
+          type="text"
+          placeholder="Your name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+          style={{ width: "100%", padding: 10 }}
+        />
+        <input
+          type="email"
+          placeholder="you@example.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          style={{ width: "100%", padding: 10 }}
+        />
+        <textarea
+          rows={6}
+          placeholder="Tell us about your project…"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          required
+          style={{ width: "100%", padding: 10 }}
+        />
+        <button
+          type="submit"
+          disabled={status === "sending"}
+          style={{ width: "100%", padding: "10px 16px" }}
+        >
+          {status === "sending" ? "Sending…" : "Send"}
+        </button>
+
+        {status === "ok" && (
+          <p style={{ color: "green", marginTop: 8 }}>Message sent </p>
+        )}
+        {status === "error" && (
+          <p style={{ color: "crimson", marginTop: 8 }}>{error}</p>
+        )}
+      </form>
+    </main>
   );
 }
-
-async function handleSubmit(e) {
-  e.preventDefault();
-  setStatus("sending"); setError("");
-
-  try {
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, message: msg }),
-    });
-
-    const text = await res.text();
-    let data;
-    try { data = JSON.parse(text); }
-    catch { throw new Error(`Server returned ${res.status}: ${text.slice(0,200)}…`); }
-
-    if (!res.ok || !data?.ok) {
-      throw new Error(data?.error || `Failed with ${res.status}`);
-    }
-
-    setStatus("ok");
-    setName(""); setEmail(""); setMsg("");
-  } catch (err) {
-    setStatus("error");
-    setError(err.message);
-  }
-}
-
