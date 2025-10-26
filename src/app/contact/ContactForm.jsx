@@ -1,3 +1,10 @@
+return (
+  <main style={{ padding: "16px" }}>
+    <h1 style={{ fontSize: 24, marginBottom: 12 }}>Contact Us</h1>
+
+    <form onSubmit={handleSubmit} style={{ width: "100%", maxWidth: 520, display: "grid", gap: 10 }}>
+      {/* inputs as you already have them */}
+
 "use client";
 import { useState } from "react";
 

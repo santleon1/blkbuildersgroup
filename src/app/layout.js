@@ -64,3 +64,8 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
