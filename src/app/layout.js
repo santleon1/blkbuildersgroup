@@ -9,7 +9,7 @@ export const metadata = {
   icons: {
     icon: "/Sello BLK.PNG",           // favicon shown in browser tab
     // You can add more sizes if you like:
-    // shortcut: "/sello-blk.png",
+    // shortcut: "/Sello BLK.PNG",
     // apple: "/apple-touch-icon.png",
   },
 };
