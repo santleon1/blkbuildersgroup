@@ -33,6 +33,8 @@ export default function RootLayout({ children }) {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
+	    position: "relative",
+   	    zIndex: 1000, // keeps it above everything
           }}
         >
           <Link href="/" style={{ display: "flex", alignItems: "center" }}>
