@@ -6,12 +6,7 @@ export const metadata = {
   title: "BLK Builders Group — Wind Resistance",
   description:
     "Hurricane-resistant, thermally and acoustically insulated construction. Modular, energy-saving housing.",
-  icons: {
-    icon: "/favicon.ico",           // favicon shown in browser tab
-    // You can add more sizes if you like:
-    // shortcut: "/favicon.ico",
-    // apple: "/favicon.ico",
-  },
+  icons: { icon: "/favicon.ico" },
 };
 
 export default function RootLayout({ children }) {
@@ -27,14 +22,15 @@ export default function RootLayout({ children }) {
       >
         {/* --- HEADER --- */}
         <header
+          className="site-header"
           style={{
             backgroundColor: "#0c1b45",
             padding: "16px 40px",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-	    position: "relative",
-   	    zIndex: 1000, // keeps it above everything
+            position: "relative",
+            zIndex: 1000,
           }}
         >
           <Link href="/" style={{ display: "flex", alignItems: "center" }}>
@@ -42,17 +38,23 @@ export default function RootLayout({ children }) {
               src="/blk-bluelogo.png"
               alt="BLK Builders Group"
               width={180}
-              height={60}  // must be > 0; adjust to your logo aspect ratio
+              height={60}
               style={{ height: "auto", width: "260px" }}
               priority
             />
           </Link>
 
-          <nav style={{ display: "flex", gap: "28px" }}>
-            <Link href="/projects" style={{ color: "#fff", fontWeight: "bold", textDecoration: "none" }}>
+          <nav className="main-nav" style={{ display: "flex", gap: "28px" }}>
+            <Link
+              href="/projects"
+              style={{ color: "#fff", fontWeight: "bold", textDecoration: "none" }}
+            >
               Projects
             </Link>
-            <Link href="/contact" style={{ color: "#fff", fontWeight: "bold", textDecoration: "none" }}>
+            <Link
+              href="/contact"
+              style={{ color: "#fff", fontWeight: "bold", textDecoration: "none" }}
+            >
               Contact
             </Link>
           </nav>
@@ -66,6 +68,7 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
 export const viewport = {
   width: "device-width",
   initialScale: 1,
