@@ -1,25 +1,177 @@
-/* Desktop defaults (already fine with your inline styles) */
+/* ====== Brand palette ==================================================== */
+:root {
+  --color-primary: #3e4c96;   /* deep blue */
+  --color-accent:  #7a88c4;   /* light blue */
+  --color-text:    #111;      /* main text */
+  --color-bg:      #f7f8fa;   /* page background */
+}
 
-/* Mobile-only navbar layout */
+/* ====== Base / resets ==================================================== */
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Prevent horizontal scroll issues on mobile */
+  overflow-x: hidden;
+}
+
+main { line-height: 1.6; margin-top: 12px; }
+
+img, video { max-width: 100%; height: auto; display: block; }
+
+/* ====== Links ============================================================ */
+a { color: var(--color-primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ====== Headings ========================================================= */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-primary);
+  font-weight: 700;
+  margin-top: 0;
+}
+
+/* ====== Footer =========================================================== */
+footer {
+  background: #fff;
+  color: #666;
+  padding: 20px;
+  text-align: center;
+}
+
+/* ====== Header / Nav (works with classNames set in layout) ============== */
+.site-header {
+  /* desktop defaults are mostly inline in your layout,
+     these are safe guardrails */
+  position: relative;
+  z-index: 1000;
+}
+
+.site-header .main-nav a {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ---- Mobile-only: stack links under logo, center them ------------------ */
 @media (max-width: 768px) {
   .site-header {
-    display: flex;            /* ensure Flex context */
-    flex-direction: column;   /* stack logo on top, nav below */
+    display: flex;
+    flex-direction: column;     /* logo on top, nav below */
     align-items: center;
-    padding: 12px 16px;
+    padding: 12px 16px !important;
   }
 
   .site-header .main-nav {
     display: flex;
-    flex-direction: column;   /* stack the links vertically */
-    align-items: center;      /* center them */
+    flex-direction: column;     /* stack vertically */
+    align-items: center;
     gap: 10px;
     margin-top: 8px;
   }
 
-  /* Make each link take only its content width, centered */
   .site-header .main-nav a {
     display: inline-block;
     color: #fff;
   }
 }
+
+/* ====== Full-bleed utility (hero spans screen edge to edge) ============= */
+.full-bleed {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+/* ====== Hero banner ====================================================== */
+/* Your image file is hero.PNG in /public (case-sensitive) */
+.hero-banner {
+  min-height: 500px;
+  background-image: url("/hero.PNG");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+/* Space after hero before next heading/section */
+.hero-banner + h2 { margin-top: 48px; }
+
+/* Mobile tweak: fixed backgrounds can be janky on iOS/Android */
+@media (max-width: 768px) {
+  .hero-banner {
+    background-attachment: scroll;
+    min-height: 260px;
+  }
+}
+
+/* ====== Projects carousel =============================================== */
+.carousel {
+  position: relative;
+  margin-block: 24px;
+}
+
+.carousel .slides {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  padding-bottom: 8px;
+}
+
+.carousel .slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+}
+
+.carousel .media {
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+  .carousel .media { height: 260px; }
+}
+
+video.media { object-fit: cover; }
+
+.project-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+}
+
+/* Carousel nav buttons */
+.carousel .nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  border: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.carousel .prev { left: 8px; }
+.carousel .next { right: 8px; }
+.carousel .nav:hover { background: rgba(0,0,0,0.6); }
